@@ -1,2 +1,2 @@
 # IntSec_StressTestingApp
-Zhvillimi i këtij aplikacioni mundëson "stress testing" per "web application".
+Zhvillimi i këtij aplikacioni mundëson "stress testing" për "web application".
