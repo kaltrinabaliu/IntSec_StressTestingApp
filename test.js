@@ -43,4 +43,23 @@ async.map(arr, function (url, callback) {
                     phases.splice(0, 1)
                 }
             }
-    
+                
+            else {
+                console.log(`${phases[0]} phase completed`);
+                console.log("A total of " + positiveRequests + " were sent out of " + usersAmmount[0])
+                console.log("Number of Failed Requests were " + (usersAmmount[0] - positiveRequests));
+                console.log("Completion rate : " + ((positiveRequests / usersAmmount[0]) * 100));
+                console.log("---------------------------------")
+                if (positiveRequests !== 0) {
+                    if (usersAmmount.length > 1) {
+                        startStressTest(url);
+                        usersAmmount.splice(0, 1);
+                        phases.splice(0, 1)
+                    }
+                }
+                else {
+                    return;
+                }
+            }
+        });
+}
