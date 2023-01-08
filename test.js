@@ -17,3 +17,30 @@ function startStressTest(url) {
     for (let i = 0; i < usersAmmount[0]; i++) {
         arr.push(url);
     }
+async.map(arr, function (url, callback) {
+        count++;
+
+        request(url, function (error, response) {
+            if (!error && response.statusCode == 200) {
+                positiveRequests++;
+                callback(null);
+            } else {
+                if (count === arr.length) {
+                    callback(error);
+                } else {
+                    callback(null);
+                }
+            }
+        });
+    },
+        function (err) {
+            if (!err) {
+                console.log(`${phases[0]} phase completed`);
+                console.log('All the requests arrived. The number of requests was: ' + positiveRequests);
+                if (usersAmmount.length > 0) {
+                    startStressTest(url);
+                    usersAmmount.splice(0, 1)
+                    phases.splice(0, 1)
+                }
+            }
+    
